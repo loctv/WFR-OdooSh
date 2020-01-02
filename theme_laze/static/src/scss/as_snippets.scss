@@ -1,0 +1,655 @@
+/* Dots Hided
+---------------------------------------------*/
+.as-latest-blog,
+.s_product_slider {
+	.owl-dots {
+		display: none;
+	}
+}
+
+/* Brand Collections
+---------------------------------------------*/
+.js_brand_multi_collection {
+	padding-top: 20px;
+	padding-bottom: 20px;
+	.owl-nav {
+		display: none;
+	}
+	.owl-dots {
+		margin-top: 15px;
+	}
+	.owl-stage {
+		margin: 0 auto;
+	}
+	.brand-img {
+	    padding: 4px;
+		.brand_img_span {
+			height: 80px;
+		    display: block;
+		    border: 1px solid #ddd;
+		    background: #fff;
+		    padding: 5px;
+		    box-shadow: 0 1px 7px -1px rgba(0, 0, 0, 0.15);
+		    border-radius: 7px;
+		}
+		img {
+			max-width: 130px;
+		    max-height: 70px;
+		    width: auto;
+		    display: block;
+		    margin: 0 auto;
+		}
+		a {
+			display: block;
+			font-weight: 500;
+			color: $as-dark-color;
+		}
+		.brand-name {
+		    width: 100%;
+		    max-width: 100%;
+		    display: inline-block;
+		    vertical-align: top;
+		    text-align: center;
+		    color: $as-dark-color;
+		    font-size: 15px;
+		    padding-top: 8px;
+		    font-weight: 400;
+		    white-space: nowrap;
+		    text-overflow: ellipsis;
+		    overflow: hidden;
+		}
+	}
+}
+
+/* Owl Dots and Nav
+---------------------------------------------*/
+.owl-dots {
+	text-align: center;
+	margin-top: 0px;
+
+	.owl-dot {
+		width: 10px;
+		height: 10px;
+		display: inline-block;
+		vertical-align: middle;
+		background: none !important;
+		border: 1px solid #999 !important;
+		margin: 0 3px;
+		border-radius: 50%;
+		@include transition(ease all 0.55s);
+		@include scale(1);
+
+		&.active {
+			@include scale(1.2);
+			background: #999 !important;
+		}
+
+	}
+
+}
+
+.owl-nav {
+    text-align: center;
+    margin-top: 15px;
+    position: relative;
+    z-index: 1;
+    &:before {
+	    content: "";
+	    position: absolute;
+	    top: 0;
+	    right: 0;
+	    bottom: 0;
+	    margin: auto;
+	    background: radial-gradient(ellipse at left, #d8d8d8 0, rgba(255, 255, 255, 0) 40%);
+	    height: 1px;
+	    width: calc(50% - 50px);
+	    z-index: -1;
+	}
+	&:after {
+	    content: "";
+	    position: absolute;
+	    top: 0;
+	    left: 0;
+	    bottom: 0;
+	    margin: auto;
+	    background: radial-gradient(ellipse at right, #d8d8d8 0, rgba(255, 255, 255, 0) 40%);
+	    height: 1px;
+	    width: calc(50% - 50px);
+	    z-index: -1;
+	}
+	button {
+	    width: 40px;
+	    height: 40px;
+	    border: none !important;
+	    background: none !important;
+	    @include transition(ease all 0.55s);
+	    margin: 0 6px;
+	    &.disabled {
+	    	opacity: .8;
+	    	pointer-events: none;
+	    }
+		span {
+			position: relative;
+			width: 40px;
+			height: 40px;
+			display: inline-block;
+			vertical-align: top;
+			background: $as-dark-color;
+			color: $as-white;
+			&:before {
+			    content: "";
+			    position: absolute;
+			    width: 14px;
+			    height: 14px;
+			    border-top: 2px solid currentColor;
+			    border-left: 2px solid currentColor;
+			    top: 0;
+			    bottom: 0;
+			    margin: auto;
+			    left: 0;
+			}
+		}
+
+		&.owl-prev {
+			span {
+				&:before{
+					left: 16px;
+					@include rotate(-45);
+				}
+			}
+
+		}
+
+		&.owl-next {
+			span {
+				&:before {
+					@include rotate(135);
+					left: auto;
+					right: 16px;
+				}
+			}
+
+		}
+	}
+}
+
+
+.section {
+	padding-top: 100px;
+	padding-bottom: 100px;
+	@include down-md {
+		padding-top: 60px;
+		padding-bottom: 60px;
+	}
+	@include down-md {
+		padding-top: 40px;
+		padding-bottom: 40px;
+	}
+}
+.no-padding {
+	padding: 0 !important;
+}
+
+/* carousel icon
+------------------------------*/
+.carousel-icon-bottom {
+	.carousel-control {
+	    width: 60px;
+	    height: 60px;
+	    position: absolute;
+	    bottom: 15px;
+	    top: auto;
+	    left: auto;
+	    right: 15px;
+	    margin: auto;
+	    opacity: 1;
+	    span {
+	    	position: absolute;
+	    	top: 0;
+	    	left: 0;
+	    	bottom: 0;
+	    	right: 0;
+	    	margin: auto;
+	    	width: 30px;
+	    	height: 30px;
+	    	&:after {
+    		    position: absolute;
+			    top: 0;
+			    bottom: 0;
+			    right: 0;
+			    margin: auto;
+			    border-bottom: 2px solid currentColor;
+			    border-right: 2px solid currentColor;
+			    content: "";
+			    width: 20px;
+			    height: 20px;
+	    	}
+	    }
+	    &-next {
+	    	span {
+	    		&:after {
+	    			@include rotate(-45);
+	    			left: -15px;
+	    		}
+	    	}
+	    }
+	    &-prev {
+	    	right: 72px;
+	    	span {
+	    		&:after {
+	    			@include rotate(135);
+	    			left: 15px;
+	    		}
+	    	}
+	    }
+	}
+	
+	&.dark {
+		.carousel-control {
+			background: $as-black;
+			span {
+				color: $as-white;
+			}
+		}
+	}
+}
+
+/* carousel arrow
+------------------------------*/
+.carousel-indicators li {
+    border: 1px solid #000;
+    width: 10px !important;
+    height: 10px !important;
+    border-radius: 50% !important;
+}
+.carousel-arrow {
+	.carousel-item {
+		> .container {
+			> .row {
+				@include up-md {
+				    padding-left: 50px;
+					padding-right: 50px;
+				}
+			}
+		}
+	}
+	.carousel-indicators {
+		> li {
+		    width: 18px !important;
+		    height: 18px !important;
+		    border-radius: 50% !important;
+		    border: none;
+		}
+	}
+	.carousel-control {
+		width: 30px;
+	    height: 30px;
+	    position: absolute;
+	    opacity: 1;
+	    @include down-md {
+	    	display: none;
+	    }
+	    span {
+	    	position: absolute;
+	    	top: 0;
+	    	left: 0;
+	    	bottom: 0;
+	    	right: 0;
+	    	margin: auto;
+	    	width: 30px;
+	    	height: 30px;
+	    	&:after {
+    		    position: absolute;
+			    top: 0;
+			    bottom: 0;
+			    margin: auto;
+			    border-bottom: 2px solid currentColor;
+			    border-right: 2px solid currentColor;
+			    content: "";
+			    width: 14px;
+			    height: 14px;
+	    	}
+	    	&:before {
+    		    content: "";
+			    width: 30px;
+			    height: 2px;
+			    background: currentColor;
+			    position: absolute;
+			    top: 0;
+			    bottom: 0;
+			    margin: auto;
+			    @include transition(ease all 0.55s);
+	    	}
+	    }
+	    &-next {
+	    	span {
+	    		&:after {
+	    			@include rotate(-45);
+	    			right: 0;
+	    		}
+	    		&:before {
+	    			right: 0;
+	    		}
+	    	}
+	    }
+	    &-prev {
+	    	span {
+	    		&:after {
+	    			@include rotate(135);
+	    			left: 0;
+	    		}
+	    		&:before {
+	    			left: 0;
+	    		}
+	    	}
+	    }
+	    &:hover {
+	    	span {
+	    		&:before {
+	    			width:0px;
+	    		}
+	    	}
+	    }
+	}
+
+	&.center {
+		.carousel-control {
+			top: 0;
+			bottom: 0;
+			margin: auto;
+			&-prev {
+				left: 20px;
+				@include down-md {
+					left: 15px;
+				}
+			}
+			&-next {
+				right: 20px;
+				@include down-md {
+					right: 15px;
+				}
+			}
+		}
+	}
+
+	&.bottom {
+		.carousel-control {
+		    bottom: 15px;
+		    top: auto;
+		    left: auto;
+		    right: 20px;
+		    margin: auto;
+		    &-prev {
+		    	right: 60px;
+		    }
+		}
+	}
+	&.dark {
+		.carousel-control {
+			span {
+				color: $as-black;
+			}
+		}
+		.carousel-indicators {
+			> li {
+			    background: $as-black;
+			}
+		}
+	}
+	&.white {
+		.carousel-control {
+			span {
+				color: $as-white;
+			}
+		}
+	}
+}
+
+/* carousel dots
+------------------------------*/
+.carousel-dots {
+	.carousel-indicators {
+	    position: absolute;
+	    bottom: 20px;
+	    margin: 0;
+	    padding: 0;
+		li {
+		    width: 12px;
+		    height: 12px;
+		    opacity: 1;
+		    border: 2px solid currentColor !important;
+		    border-radius: 50%;
+		    border: none;
+		    box-shadow: none;
+		    background: none;
+		    &.active {
+		    	background:currentColor !important;
+		    }
+		}
+	}
+	&.left {
+		.carousel-indicators {
+			text-align: left;
+		}
+	}
+	&.dark {
+		.carousel-indicators {
+			li {
+				color: $as-dark-color;
+			}
+		}
+	}
+	&.white {
+		.carousel-indicators {
+			li {
+				color: $as-white;
+			}
+		}
+	}
+}
+
+
+/* Cat
+------------------------------*/
+.cat-snippet-1 .cs1-box:before {
+    content: "";
+    padding-bottom: 100%;
+    display: inline-block;
+    width: 100%;
+    vertical-align: top;
+}
+.cat-snippet-1 .cs2-box {
+    height: 100%;
+}
+.cat-snippet-1 .cs2-box:before {
+    content: "";
+    padding-bottom: 100%;
+    display: inline-block;
+    width: 100%;
+    vertical-align: top;
+}
+.cat-snippet-1 .cs3-box {
+    height: calc(50% - 15px);
+}
+.cat-snippet-1 .cs3-box:before {
+    content: "";
+    padding-bottom: 50%;
+    display: inline-block;
+    width: 100%;
+    vertical-align: top;
+}
+
+
+/* Deal
+------------------------------*/
+.dt-deal-count {
+	margin-bottom: 40px;
+
+	ul {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	li {
+		position: relative;
+		display: inline-block;
+		font-size: 30px;
+		color: #323232;
+		padding-right: 55px;
+		text-align: center;
+		line-height: normal;
+
+		span {
+			display: inline-block;
+			vertical-align: baseline;
+		}
+
+		label {
+			font-weight: 400;
+			font-size: 14px;
+			display: inline-block;
+			vertical-align: baseline;
+		}
+
+		&:not(:first-child):after {
+			content: "";
+			position: absolute;
+			width: 30px;
+			height: 1px;
+			background: #000;
+			transform: rotate(-65deg);
+			left: -35px;
+			top: 0;
+			bottom: 0;
+			margin: auto;
+			opacity: 0.2
+		}
+	}
+
+	&.round {
+		li {
+			margin: 0 10px;
+			padding: 12px;
+			border-radius: 12px;
+			background: #fff;
+
+			&:not(:first-child):after {
+				display: none;
+			}
+		}
+	}
+}
+
+/* Aninmeted Slider
+------------------------------*/
+.ani-carousel {
+    .carousel-item {
+        .ani-fade {
+            @include transition(ease-in-out all 0.35s);
+            opacity: 0;
+            @include scale(.5);
+            position: relative;
+            top: -15px;
+            left: -15px;
+        }
+        .ani-fade-left {
+            @include transition(ease-in-out all 0.35s);
+            opacity: 0;
+            @include transform(translate(-140px, 0));
+            position: relative;
+        }
+        .ani-fade-right {
+            @include transition(ease-in-out all 0.35s);
+            opacity: 0;
+            @include transform(translate(140px, 0));
+            position: relative;
+        }
+        .ani-fade-top {
+            @include transition(ease-in-out all 0.35s);
+            opacity: 0;
+            @include transform(translate(0, 50px));
+            position: relative;
+        }
+        .ani-fade-bottom {
+            @include transition(ease-in-out all 0.35s);
+            opacity: 0;
+            @include transform(translate(0, -50px));
+            position: relative;
+        }
+        .ani-scale-down {
+            @include transition(ease-in-out all 0.35s);
+            opacity: 0;
+            @include scale(0);
+            position: relative;
+        }
+        .ani-scale-up {
+            @include transition(ease-in-out all 0.35s);
+            opacity: 0;
+            @include scale(1.5);
+            position: relative;
+        }
+        .delay-1 {
+            @include delay(.5s);
+        }
+        .ani-2 {
+            @include delay(.6s);
+        }
+        .ani-3 {
+            @include delay(1s);
+        }
+        .ani-4 {
+            @include delay(1.2s);
+        }
+        .ani-5 {
+            @include delay(1.4s);
+        }
+        .ani-6 {
+            @include delay(1.6s);
+        }
+        .ani-7 {
+            @include delay(1.8s);
+        }
+        .ani-8 {
+            @include delay(2s);
+        }
+        .ani-9 {
+            @include delay(2.2s);
+        }
+        .ani-10 {
+            @include delay(2.4s);
+        }
+        &.active {
+            .ani-fade {
+                opacity: 1;
+                @include scale(1);
+                top: 0;
+                left: 0;
+            }
+            .ani-fade-left {
+                opacity: 1;
+                @include transform(translate(0px, 0));
+            }
+            .ani-fade-right {
+                opacity: 1;
+                @include transform(translate(0px, 0));
+            }
+            .ani-fade-top {
+                opacity: 1;
+                @include transform(translate(0px, 0));
+            }
+            .ani-fade-bottom {
+                opacity: 1;
+                @include transform(translate(0px, 0));
+            }
+            .ani-scale-down {
+                opacity: 1;
+                @include scale(1);
+            }
+            .ani-scale-up {
+                opacity: 1;
+                @include scale(1);
+            }
+        }
+    }
+}
