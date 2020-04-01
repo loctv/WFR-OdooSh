@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.actions.server" id="recalc_price">
+        <field name="name">Recalculate Price</field>
+        <field name="type">ir.actions.server</field>
+        <field name="model_id" ref="model_sale_order" />
+        <field name="state">code</field>
+        <field name="code">
+records._recalculate_price()
+        </field>
+    </record>
+</odoo>
