@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.actions.server" id="landed_cost_price">
+        <field name="name">Overwrite Product Cost</field>
+        <field name="type">ir.actions.server</field>
+        <field name="binding_model_id" ref="model_product_supplierinfo"/>
+        <field name="binding_type">action</field>
+        <field name="model_id" ref="model_product_supplierinfo" />
+        <field name="state">code</field>
+        <field name="code">
+records._overwrite_product_cost()
+        </field>
+    </record>
+</odoo>
