@@ -16,12 +16,8 @@
                                 <t t-if="doc.product_id.attribute_line_ids">
                                     <tr>
                                         <td style="text-align: center;">
-                                            <span t-foreach="doc.product_id.attribute_line_ids" t-as="attribute_value1">
-                                                <span t-foreach="attribute_value1.product_template_value_ids" t-as="attribute_value">
-                                                    <span t-if="attribute_value_first"></span>
-                                                    <span t-if="not attribute_value_last" t-esc="attribute_value.name+','"/>
-                                                    <span t-else="" t-esc="attribute_value.name"/>
-                                                </span>
+                                            <span t-foreach="doc.product_id.product_template_attribute_value_ids" t-as="attribute_value1">
+                                                <span t-esc="attribute_value1.name+','"/>
                                             </span>
                                         </td>
                                     </tr>
