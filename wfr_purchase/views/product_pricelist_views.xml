@@ -7,16 +7,16 @@
         <field name="arch" type="xml">
             <xpath expr="//group//group[2]" position="replace">
                 <group string="Price List">
-                    <label for="x_studio_duty"/>
+                    <label for="duty"/>
                     <div class="o_row">
-                        <field name="x_studio_duty"/>(%%)
+                        <field name="duty"/>(%%)
                     </div>
-                    <label for="x_studio_freight"/>
+                    <label for="freight"/>
                     <div class="o_row">
-                        <field name="x_studio_freight"/>(%%)
+                        <field name="freight"/>(%%)
                     </div>
                     
-                    <field name="x_studio_estimated_landed_cost"/>
+                    <field name="estimated_landed_cost"/>
                     <field name="currency_rate" />
                     <field name="product_tmpl_id" string="Product" invisible="context.get('visible_product_tmpl_id', True)"/>
                     <label for="min_qty"/>
