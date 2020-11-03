@@ -21,13 +21,10 @@ class SupplierInfo(models.Model):
 
     def _overwrite_product_cost(self):
         if self.env.user.has_group('purchase.group_purchase_manager'):
-            if len(set([record.name for record in self])) == 1:
-                for record in self:
-                    if record.product_id:
-                        record.product_id.standard_price = record.estimated_landed_cost
-                    else:
-                        record.product_tmpl_id.standard_price = record.estimated_landed_cost
-            else:
-                raise UserError(_("Cannot overwrite costs for multiple vendors at the same time."))
+            for record in self:
+                if record.product_id:
+                    record.product_id.standard_price = record.estimated_landed_cost
+                else:
+                    record.product_tmpl_id.standard_price = record.estimated_landed_cost
         else:
             raise UserError(_("Only managers can overwrite product costs."))
