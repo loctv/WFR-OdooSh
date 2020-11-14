@@ -88,13 +88,13 @@
                         <t t-if="brand.brand_id.website_id.id in ( website.id , False)">
                             <t t-if="obj.brand_link_active">
                                 <div class="brand-img">
-                                    <a t-att-href="'/shop/brand/%s' % slug(brand.brand_id)">
+                                    <a t-att-href="'/shop?brand=%s-%s' % (brand.brand_id.name,brand.brand_id.id)">
                                         <span class="brand_img_span">
                                             <img t-att-alt="brand.brand_id.name" t-att-src="website.image_url(brand.brand_id, 'logo')" t-att-title="brand.brand_id.name"/>
                                         </span>
                                     </a>
                                     <t t-if="obj.brand_name_active">
-                                        <a t-att-href="'/shop/brand/%s' % slug(brand.brand_id)">
+                                        <a t-att-href="'/shop?brand=%s-%s' % (brand.brand_id.name,brand.brand_id.id)">
                                             <span class="brand-name" t-esc="brand.brand_id.name"/>
                                         </a>
                                     </t>

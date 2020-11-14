@@ -26,6 +26,7 @@
             <script type="text/javascript" src="/atharva_theme_general/static/lib/js/jquery.cookieBar.min.js" />
             <script type="text/javascript" src="/atharva_theme_general/static/lib/js/jquery.countdown.min.js" />
             <script type="text/javascript" src="/atharva_theme_general/static/src/js/custom.js" />
+            <script type="text/javascript" src="/atharva_theme_general/static/src/js/website_sale_wishlist.js" />
             <script type="text/javascript" src="/atharva_theme_general/static/src/js/custom_shop.js" />
             <script type="text/javascript" src="/atharva_theme_general/static/src/js/zoom.js" />
         </xpath>

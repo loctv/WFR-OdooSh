@@ -14,6 +14,7 @@ from odoo.addons.website_sale.controllers.main import QueryURL
 from odoo.addons.website_sale.controllers import main
 from odoo.addons.web_editor.controllers.main import Web_Editor
 from lxml import etree, html
+from werkzeug.exceptions import Forbidden, NotFound
 
 
 main.PPG = 18
@@ -80,7 +81,7 @@ class WebsiteSale(WebsiteSale):
         brand_ids = []
         if post.get('brand'):
             brand_list = request.httprequest.args.getlist('brand')
-            brand_values = [[str(x) for x in v.split("-")]
+            brand_values = [[str(x) for x in v.rsplit("-",1)]
                         for v in brand_list if v]
             brand_ids = list(set([int(v[1]) for v in brand_values]))
             if len(brand_ids) > 0:
@@ -89,7 +90,8 @@ class WebsiteSale(WebsiteSale):
         tag_ids = []
         if post.get('tags'):
             tag_list = request.httprequest.args.getlist('tags')
-            tag_values = [[str(x) for x in v.split("-")] for v in tag_list if v]
+            tag_values = [[str(x) for x in v.rsplit("-",1)]
+                        for v in tag_list if v]
             tag_ids = list(set([int(v[1]) for v in tag_values]))
             if len(tag_ids) > 0:
                 domain += [('tag_ids', 'in', tag_ids)]
@@ -199,9 +201,7 @@ class WebsiteSale(WebsiteSale):
     @http.route(['/shop/load_next_products'], type="http", auth="public", website=True)
     def load_next_products(self, category='', loaded_products=0, search='', ppg=0, **post):
         if ppg:
-            Category = request.env['product.public.category']
-
-            attrib_list = request.httprequest.args.getlist('attrib')
+            attrib_list = request.httprequest.args.getlist('attrib[]')
             attrib_values = [[int(x) for x in v.split("-")] for v in attrib_list if v]
             attributes_ids = {v[0] for v in attrib_values}
             attrib_set = {v[1] for v in attrib_values}
@@ -209,18 +209,19 @@ class WebsiteSale(WebsiteSale):
             domain = self._get_search_domain(search, category, attrib_values)
 
             brand_ids = []
-            if post.get('brand'):
-                brand_list = request.httprequest.args.getlist('brand')
-                brand_values = [[str(x) for x in v.split("-")]
+            if post.get('brand[]'):
+                brand_list = request.httprequest.args.getlist('brand[]')
+                brand_values = [[str(x) for x in v.rsplit("-",1)]
                             for v in brand_list if v]
                 brand_ids = list(set([int(v[1]) for v in brand_values]))
                 if len(brand_ids) > 0:
                     domain += [('product_brand_id', 'in', brand_ids)]
 
             tag_ids = []
-            if post.get('tags'):
-                tag_list = request.httprequest.args.getlist('tags')
-                tag_values = [[str(x) for x in v.split("-")] for v in tag_list if v]
+            if post.get('tags[]'):
+                tag_list = request.httprequest.args.getlist('tags[]')
+                tag_values = [[str(x) for x in v.rsplit("-",1)]
+                            for v in tag_list if v]
                 tag_ids = list(set([int(v[1]) for v in tag_values]))
                 if len(tag_ids) > 0:
                     domain += [('tag_ids', 'in', tag_ids)]
@@ -231,7 +232,6 @@ class WebsiteSale(WebsiteSale):
 
             request.context = dict(request.context, pricelist=pricelist.id, partner=request.env.user.partner_id)
 
-            url = "/shop"
             if search:
                 post["search"] = search
             if attrib_list:
@@ -239,6 +239,7 @@ class WebsiteSale(WebsiteSale):
 
             Product = request.env['product.template'].with_context(bin_size=True)
 
+            Category = request.env['product.public.category']
             search_product = Product.search(domain)
             website_domain = request.website.website_domain()
             categs_domain = [('parent_id', '=', False)] + website_domain
@@ -249,7 +250,10 @@ class WebsiteSale(WebsiteSale):
                 search_categories = Category
             categs = Category.search(categs_domain)
 
+            url = "/shop"
             if category:
+                category = request.env[
+                    'product.public.category'].browse(int(category))
                 url = "/shop/category/%s" % slug(category)
 
             product_count = len(search_product)

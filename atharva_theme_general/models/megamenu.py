@@ -98,7 +98,8 @@ class MegamenuContent(models.Model):
     main_content_type=fields.Selection([('product_grid','Product Grid'),('product_list','Product Listing'),
                                         ('category_grid','Category Grid'),('category_list','Category Listing'),
                                         ('content','Content'),('mixed_list','Mixed Listing'),
-                                        ('horiz_categ_toggle','Horizontal Category Toggle')
+                                        ('horiz_categ_toggle','Horizontal Category Toggle'),
+                                        ('horiz_categ_toggle_2_level','Horizontal Category Toggle 2 Level')
                                        ],string='Content Type',translate=True)
     no_of_columns=fields.Selection([('1','1'),('2','2'),('3','3'),('4','4'),('5','5'),('6','6')],
                                    string='Number of Columns',translate=True)

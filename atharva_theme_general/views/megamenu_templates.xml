@@ -44,9 +44,9 @@
                 <span t-field="submenu.name"/>
             </a>
             <t t-if="submenu.is_dynamic_mega_menu and submenu.content_id">
-                <div t-att-class="'mm-maga-main %s mm-mega-list %s' %('mm-mega-cat-level' if submenu.content_id.main_content_type == 'horiz_categ_toggle' else '', submenu.content_id.no_of_columns and 'mm-mega-'+str(submenu.content_id.no_of_columns) or '')">
+                <div t-att-class="'mm-maga-main %s mm-mega-list %s' %('mm-mega-cat-level' if (submenu.content_id.main_content_type == 'horiz_categ_toggle' or submenu.content_id.main_content_type == 'horiz_categ_toggle_2_level') else '', submenu.content_id.no_of_columns and 'mm-mega-'+str(submenu.content_id.no_of_columns) or '')">
                     <div class="mm-maga-main-width">
-                        <t t-if="submenu.content_id.is_header">
+                        <t t-if="submenu.content_id.is_header and (submenu.content_id.main_content_type != 'horiz_categ_toggle' and submenu.content_id.main_content_type != 'horiz_categ_toggle_2_level')">
                             <t t-if="submenu.content_id.header_content">
                                 <div t-field="submenu.content_id.header_content" class="o_not_editable mm-menu-head" />
                             </t>
@@ -335,9 +335,65 @@
                                     </div>
                                 </t>
                             </t>
+                            <t t-if="submenu.content_id.main_content_type == 'horiz_categ_toggle_2_level'">
+                                <t t-if="submenu.content_id.category_first_level">
+                                    <div class="mmc-body">
+                                        <ul class="mm-category-level-v2">
+                                            <t t-foreach="submenu.content_id.category_first_level" t-as="lvl1_each_categ">
+                                                <li class="mm-cat-level-1-v2">
+                                                    <div class="cat-level-title cat_level_title_1">
+                                                        <a class="mm-title" t-att-href="'/shop/category/%s' %(slug(lvl1_each_categ.categ_id),)">
+                                                            <span class="icon">
+                                                                <img t-att-src="website.image_url(lvl1_each_categ, 'image')" t-att-alt="lvl1_each_categ.categ_id.name" />
+                                                            </span>
+                                                            <span t-esc="lvl1_each_categ.categ_id.name" />
+                                                        </a>
+                                                    </div>
+                                                    <ul class="mm-cat-level-1-in-v2">
+                                                        <t t-if="submenu.content_id.category_second_level">
+                                                            <t t-foreach="submenu.content_id.category_second_level" t-as="lvl2_each_categ">
+                                                                <t t-if="lvl2_each_categ.categ_id.parent_id.id == lvl1_each_categ.categ_id.id">
+                                                                    <li class="mm-cat-level-2-v2">
+                                                                        <div class="cat-level-title cat_level_title_2">
+                                                                            <a class="mm-title" t-att-href="'/shop/category/%s' %(slug(lvl2_each_categ.categ_id),)">
+                                                                                <span class="icon">
+                                                                                    <img t-att-src="website.image_url(lvl2_each_categ, 'image')" t-att-alt="lvl2_each_categ.categ_id.name" />
+                                                                                </span>
+                                                                                <span t-esc="lvl2_each_categ.categ_id.name" />
+                                                                            </a>
+                                                                        </div>
+                                                                        <div class="mm-cat-level-3-v2">
+                                                                            <div class="mm-cat-level-2-v2-inner">
+                                                                                <ul class="row">
+                                                                                    <t t-if="submenu.content_id.category_third_level">
+                                                                                        <t t-foreach="submenu.content_id.category_third_level" t-as="lvl3_each_categ">
+                                                                                            <t t-if="lvl3_each_categ.categ_id.parent_id.id == lvl2_each_categ.categ_id.id">
+                                                                                                <li class="mm-col">
+                                                                                                    <a t-att-href="'/shop/category/%s' %(slug(lvl3_each_categ.categ_id),)">
+                                                                                                        <span t-esc="lvl3_each_categ.categ_id.name" />
+                                                                                                    </a>
+                                                                                                </li>
+                                                                                            </t>
+                                                                                        </t>
+                                                                                    </t>                
+                                                                                </ul>
+                                                                            </div>
+                                                                        </div>
+                                                                    </li>
+                                                                </t>
+                                                            </t>
+                                                        </t>
+                                                    </ul>
+
+                                                </li>
+                                            </t>
+                                        </ul>
+                                    </div>
+                                </t>
+                            </t>
                         </t>
                         <!-- Mega menu content end -->
-                        <t t-if="submenu.content_id.is_footer">
+                        <t t-if="submenu.content_id.is_footer and (submenu.content_id.main_content_type != 'horiz_categ_toggle' and submenu.content_id.main_content_type != 'horiz_categ_toggle_2_level')">
                             <div class="mm-menu-fot o_not_editable" t-field="submenu.content_id.footer_content"></div>
                         </t>
                     </div>

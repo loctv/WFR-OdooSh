@@ -4,7 +4,7 @@
     'category': 'Website',
     'sequence': 5,
     'summary': """Atharva Theme General""",
-    'version': '1.7',
+    'version': '2.5',
     'author': 'Atharva System',
     'support': 'support@atharvasystem.com',
     'website' : 'http://www.atharvasystem.com',
@@ -15,7 +15,6 @@
         'website_sale_wishlist', 
         'website_sale_stock',
         'website_sale_comparison',
-        'website_mass_mailing',
         'website_blog'
     ],
     'data': [
@@ -43,7 +42,7 @@
     'demo': [
         'data/demo.xml',
     ],
-    'price': 14.00,
+    'price': 4.00,
     'currency': 'EUR',
     'images': ['static/description/atharva-theme-general-banner.png'],
     'installable': True,
